@@ -1,6 +1,7 @@
 package abs;
 
 public class Disciplina {
+<<<<<<< HEAD
 	private String nome;
 	private int codigo;
 	private int credito;
@@ -33,4 +34,7 @@ public String getnom() {
 	public String gettip(int x) {
 		return tipo[x];
 	}
+=======
+
+>>>>>>> parent of fcfae0d... Implementação dos métodos(parcialmente)
 }
