@@ -2,24 +2,30 @@ package estfis;
 
 public class Predio extends Estrutura{
 	String nomeCp;
-	private int andates;
+	private int andares;
 	private int txoc;
+	
+	public Predio (String nome, int and, int txoc) {
+		this.nomeCp = nome;
+		this.andares = and;
+		this.txoc = txoc;
+	}
 	public String getNomeCp() {
 		return nomeCp;
 	}
 	public void setNomeCp(String nomeCp) {
 		this.nomeCp = nomeCp;
 	}
-	public int getAndates() {
-		return andates;
+	public int getandares() {
+		return andares;
 	}
-	public void setAndates(int andates) {
-		this.andates = andates;
+	public void setandares(int andares) {
+		this.andares = andares;
 	}
-	public int getTxoc() {
+	 int getTxoc() {
 		return txoc;
 	}
-	public void setTxoc(int txoc) {
+	 void setTxoc(int txoc) {
 		this.txoc = txoc;
 	}
 	
