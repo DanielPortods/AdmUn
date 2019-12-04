@@ -8,14 +8,24 @@ public abstract class Estrutura {
 	public void home () {
 		
 	}
-	public String getnome() {
+	void String setNome(String n) {
+		this.nome = n;
+		
+	}
+	void String setFormest(String n) {
+		this.formest = n;
+		
+	}
+	public String getNome() {
 		return this.nome;
 	}
 	
 	int getqtEst() {
 		return this.qtEst;
 	}
-	void setqtEst() {
+	void setqtEst(int n) {
+		this.qtEst = n;
+		
 		
 	}
 	void opt() {
