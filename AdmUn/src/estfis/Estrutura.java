@@ -8,11 +8,11 @@ public abstract class Estrutura {
 	public void home () {
 		
 	}
-	void String setNome(String n) {
+	void  setNome(String n) {
 		this.nome = n;
 		
 	}
-	void String setFormest(String n) {
+	void  setFormest(String n) {
 		this.formest = n;
 		
 	}
@@ -34,7 +34,8 @@ public abstract class Estrutura {
 	void changename (String nom) {
 		this.nome = nom;
 	}
-	void caNew() {
+	void cadNew() {
+		
 		
 	}
 	
