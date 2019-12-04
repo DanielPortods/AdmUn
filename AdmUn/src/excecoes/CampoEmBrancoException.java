@@ -1,7 +1,7 @@
 package excecoes;
 
-public class ProfessorNaoAtribuidoException extends Exception {
-
+public class CampoEmBrancoException extends Exception {
+	
 	private static final long serialVersionUID = 1L;
 
 }
