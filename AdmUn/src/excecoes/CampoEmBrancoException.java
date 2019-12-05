@@ -11,6 +11,6 @@ public class CampoEmBrancoException extends Exception {
 	}
 	
 	public void msg () {
-		JOptionPane.showMessageDialog(null, "Insira o nome " + tp);
+		JOptionPane.showMessageDialog(null, "Insira " + tp);
 	}
 }

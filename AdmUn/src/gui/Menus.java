@@ -20,18 +20,13 @@ public class Menus {
 		for(int i=0; i<o.size(); i++) {
 			System.out.println("[" + (i+1) + "] " + o.get(i).getnome());
 		}
-		System.out.println("\nQauntidade de " + tp + ": " + o.size());
-		System.out.println("[+] Cadastrar nova " + tp + " [-] Excluir " + tp+"\n[<] Voltar");
+		System.out.println("\nQuantidade de " + tp + ": " + o.size());
+		System.out.println("[+] Cadastrar novas " + tp + " [-] Excluir " + tp+"\n[<] Voltar");
 	}
 	
 	public static String entrada() {
 		Scanner sc = new Scanner(System.in);
 		String r = sc.next();
-		clear();
 		return r;
-	}
-	
-	private static void clear() {
-		System.out.println('\u000C'); 
 	}
 }
