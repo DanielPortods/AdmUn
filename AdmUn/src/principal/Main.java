@@ -18,18 +18,23 @@ public class Main {
 				String res = Menus.entrada();
 				if (res.equals("1")) {
 					while (true) {
-						Menus.menu("Instituições", inst);
-						String res2 = Menus.entrada();
+						try {
+							Menus.menu("Instituições", inst);
+							String res2 = Menus.entrada();
 
-						if (res2.equals("<")) {
-							break;
-						} else if (res2.equals("+")) {
-							cadnewin();
-						} else if (res2.equals("-")) {
-							delinst();
-						} else {
-							int id = Integer.parseInt(res2);
-							inst.get(id - 1).home();
+							if (res2.equals("<")) {
+								break;
+							} else if (res2.equals("+")) {
+								cadnewin();
+							} else if (res2.equals("-")) {
+								delinst();
+							} else {
+								int id = Integer.parseInt(res2);
+								inst.get(id - 1).home();
+							}
+						} catch (NumberFormatException e) {
+							JOptionPane.showMessageDialog(null, "Informe a posição na lista de instituições ");
+							continue;
 						}
 					}
 				} else if (res.equals("2")) {
@@ -40,11 +45,7 @@ public class Main {
 			} catch (OpcaoInvalidaException e) {
 				e.msg();
 				continue;
-
-			} catch (NumberFormatException e) {
-				JOptionPane.showMessageDialog(null, "Informe a posição na lista de instituições ");
-				continue;
-			}
+			} 
 		}	
 	}
 	
