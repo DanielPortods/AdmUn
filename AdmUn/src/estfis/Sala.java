@@ -1,12 +1,14 @@
 package estfis;
 
- abstract class Sala extends Estrutura {
+
+ public class Sala extends Estrutura {
 	private int capacidade,
 	andar,txoc,projetor;
 	private String tipo[];
 	private String nompr;
+
 	
-	public Sala (int cap, int andar, int txoc, int projetor,String tipo[], String nomepr) {
+	public Sala (int cap, int andar, int txoc, int projetor,String[] tipo, String nomepr) {
 		this.capacidade = cap;
 		this.andar = andar;
 		this.txoc = txoc;
@@ -16,6 +18,7 @@ package estfis;
 		
 		
 	}
+	
 	 String getNompr() {
 		return nompr;
 	}
