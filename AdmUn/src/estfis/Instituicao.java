@@ -1,21 +1,83 @@
 package estfis;
 
+import usr.*;
+import abs.Disciplina;
 import java.util.ArrayList;
-import java.util.List;
+
+import javax.swing.JOptionPane;
 
 import usr.Professor;
+import excecoes.*;
+import gui.Menus;
 
 public class Instituicao extends Estrutura {
 		private String uf;
-		Campus cp[];
-		private List<Professor> profsCadastrados = new ArrayList<Professor>(); //array list dos professores cadastrados nessa instituição
-		private List<Aluno> alsCadastrados = new ArrayList<Aluno>(); //array list dos alunos cadastrados nessa instiuição
-		private List<Disciplina> discCadastradas = new ArrayList<Disciplina>(); // array list das disciplinas cadastradas nessa instituição
+		private ArrayList<Campus> cp = new ArrayList<>();
+		private ArrayList<Professor> profsCadastrados = new ArrayList<Professor>(); //array list dos professores cadastrados nessa instituição
+		private ArrayList<Aluno> alsCadastrados = new ArrayList<Aluno>(); //array list dos alunos cadastrados nessa instiuição
+		private ArrayList<Disciplina> discCadastradas = new ArrayList<Disciplina>(); // array list das disciplinas cadastradas nessa instituição
 		
 		public Instituicao (String nome, String uf) {
 			this.nome = nome;
 			this.uf = uf;
 			this.formest = "Campus";
+		}
+		
+		public ArrayList<? extends Estrutura> getEst() {
+			return this.cp;
+		}
+		
+		protected void caNew() throws CampoEmBrancoException {
+			String nome = null;
+			String cidade = null;
+			
+			while (true) {	
+				try {
+					nome = JOptionPane.showInputDialog("Nome:");
+					if(nome == null) {
+						return;					
+					}
+					else if (nome.trim().length() == 0) {
+						throw new CampoEmBrancoException("o nome do campus");
+					}
+					else {
+						break;
+					}
+				} catch (CampoEmBrancoException e) {
+					e.msg();
+					continue;
+				} 
+			}
+			
+			while(true) {			
+				try {
+					cidade = JOptionPane.showInputDialog("Cidade:");
+					if(cidade == null) {
+						return;
+					}
+					else if (uf.trim().length() == 0) {
+						throw new CampoEmBrancoException("a cidade do campus " + nome);
+					}
+					else {
+						Campus i = new Campus(nome, cidade);
+						cp.add(i);
+						break;
+					}		
+				}catch(CampoEmBrancoException e) {
+					e.msg();
+				}	
+			}
+		}
+		
+		@Override
+		protected void opt(){
+			super.opt();
+			System.out.println("[2] Professores");
+			System.out.println("[3] Alunos");
+			System.out.println("[4] Disciplinas");
+			System.out.println("[<] Voltar");
+			String res = Menus.entrada();
+			
 		}
 		
 		//método para cadastro de professores
@@ -48,7 +110,7 @@ public class Instituicao extends Estrutura {
 			
 			for(i = 0; i < qntAlunosCadastrados; i++) {
 				System.out.println(alsCadastrados.get(i).getNome()); //retorna o nome do aluno
-				System.out.println(alsCadsatrados.get(i).getMatricula()); //retorna a matrícula do aluno
+				System.out.println(alsCadastrados.get(i).getMatricula()); //retorna a matrícula do aluno
 			}
 		}
 		
