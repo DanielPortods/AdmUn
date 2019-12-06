@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 public class Main {
 	//private static Home h;
 	private static ArrayList<Instituicao> inst = new ArrayList<>();
+	private static final long serialVersionUID = 1L;
 	
 	public static void main(String[] args) throws OpcaoInvalidaException, NumberFormatException, CampoEmBrancoException, IOException{
 
