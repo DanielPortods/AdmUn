@@ -27,7 +27,7 @@ public class Disciplina {
 	}
 	
 	public char getTipo() {
-		return this.char;
+		return this.tipo;
 	}
 
 }
