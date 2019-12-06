@@ -5,33 +5,29 @@ public class Disciplina {
 	private String nome;
 	private int codigo;
 	private int credito;
-	private String tipo[];
-
-	public void setnom(String nom) {
+	private char tipo;
+	
+	public Disciplina(String nome, int codigo, int credito, char tipo) {
+		this.nome = nome;
+		this.codigo = codigo;
+		this.credito = credito;
+		this.tipo = tipo;
+	}
+	
+	public String getNome() {
+		return this.nome;
+	}
+	
+	public int getCodigo() {
+		return this.codigo;
+	}
+	
+	public int getCredito() {
+		return this.credito;
+	}
+	
+	public char getTipo() {
+		return this.char;
 	}
 
-public String getnom() {
-	return nome;
-}
-
-	public void setcod(int cod) {
-	}
-
-	public int getcod() {
-		return codigo;
-	}
-
-	public void setcred(int cred) {
-	}
-
-	public int getcred() {
-		return credito;
-	}
-
-	public void settip(String tip[]) {
-	}
-
-	public String gettip(int x) {
-		return tipo[x];
-	}
 }
