@@ -1,16 +1,11 @@
 package excecoes;
 import javax.swing.JOptionPane;
 
-public class DisciplinaNaoInformadaException extends Exception {
-	
-	private static final long serialVersionUID = 1L;
-	private String disc;
-	
-	public DisciplinaNaoInformadaException (String d) {
-		this.disc = d;
-	}
-	
-	public void msg () {
-		JOptionPane.showMessageDialog(null, "Insira a disciplina " + disc);
-	}
+public class DisciplinaNaoInformadaException(String msg) extends Exception {
+	super(msg);
+}
+
+@Override
+	public String toString() { 
+		return "Disciplina %s não informada".format(msg);
 }
