@@ -11,7 +11,7 @@ public abstract class Estrutura {
 	
 	public abstract ArrayList<? extends Estrutura> getEst();
 	protected abstract void caNew() throws CampoEmBrancoException;
-	
+	protected abstract void opt();
 	public void home (ArrayList<? extends Estrutura> cp) throws CampoEmBrancoException{
 		while (true) {
 			try {
@@ -42,16 +42,6 @@ public abstract class Estrutura {
 		return this.nome;
 	}
 	
-	int getqtEst() {
-		return this.qtEst;
-	}
-	void setqtEst() {
-		
-	}
-	protected void opt() {
-		System.out.println("--------------- Opções ---------------");
-		System.out.println("[1] Detalhes");
-	}
 	void changename (String nom) {
 		this.nome = nom;
 	}	
