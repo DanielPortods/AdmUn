@@ -1,21 +1,20 @@
 package principal;
-import gui.Home;
+//import gui.Home;
 import gui.Menus;
 import estfis.Instituicao;
 import excecoes.*;
-import java.io.ObjectOutputStream;
+
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class Main {
 	//private static Home h;
 	private static ArrayList<Instituicao> inst = new ArrayList<>();
-	private static final long serialVersionUID = 1L;
 	
-	public static void main(String[] args) throws OpcaoInvalidaException, NumberFormatException, CampoEmBrancoException, IOException{
+	public static void main(String[] args) throws OpcaoInvalidaException, NumberFormatException, CampoEmBrancoException{
 
 		while (true) {
 			try {
@@ -24,7 +23,7 @@ public class Main {
 				if (res.equals("1")) {
 					while (true) {
 						try {
-							Menus.menu("Instituições", inst);
+							Menus.menu("Instituições", inst, "AdmUn");
 							String res2 = Menus.entrada();
 
 							if (res2.equals("<")) {
@@ -32,15 +31,15 @@ public class Main {
 							} else if (res2.equals("+")) {
 								cadnewin();
 							} else if (res2.equals("-")) {
-								delinst();
+								Menus.del(inst, "Instituição");
 							} else {
 								int id = Integer.parseInt(res2);
-								inst.get(id - 1).home();
+								inst.get(id - 1).home(inst.get(id-1).getEst());
 							}
 						} catch (NumberFormatException e) {
 							JOptionPane.showMessageDialog(null, "Informe a posição na lista de instituições ");
-							Main erros = new Main();
-							ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(new File("logErros.txt")));
+
+											Main erros = new Main();			ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(new File("logErros.txt")));
 							o.writeObject(erros);
 							o.close();
 							continue;
@@ -53,16 +52,12 @@ public class Main {
 				}
 			} catch (OpcaoInvalidaException e) {
 				e.msg();
-				Main erros = new Main();
-				ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(new File("logErros.txt")));
-				o.writeObject(erros);
-				o.close();
 				continue;
 			} 
 		}	
 	}
 	
-	static void cadnewin() throws CampoEmBrancoException, IOException {
+	static void cadnewin() throws CampoEmBrancoException {
 		
 		String nome = null;
 		String uf = null;
@@ -81,10 +76,6 @@ public class Main {
 				}
 			} catch (CampoEmBrancoException e) {
 				e.msg();
-				Main erros = new Main();
-				ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(new File("logErros.txt")));
-				o.writeObject(erros);
-				o.close();
 				continue;
 			} 
 		}
@@ -104,42 +95,8 @@ public class Main {
 					break;
 				}		
 			}catch(CampoEmBrancoException e) {
-				Main erros = new Main();
-				ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(new File("logErros.txt")));
-				o.writeObject(erros);
-				o.close();
 				e.msg();
 			}	
-		}
-	}
-	
-	static void delinst() throws IndexOutOfBoundsException, NumberFormatException, IOException {
-		while (true) {
-			try {
-				String ids = JOptionPane.showInputDialog("Número da instituição a ser deletada:");
-				if (ids == null) {
-					break;
-				}
-				else {
-					int id = Integer.parseInt(ids);
-					inst.remove(id - 1);
-					break;
-				}
-			} catch (IndexOutOfBoundsException e) {
-				JOptionPane.showMessageDialog(null, "Não há nenhuma instituição na posição informada");
-				Main erros = new Main();
-				ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(new File("logErros.txt")));
-				o.writeObject(erros);
-				o.close();
-				continue;
-			} catch (NumberFormatException e) {
-				JOptionPane.showMessageDialog(null, "Informe a posição na lista de instituições ");
-				Main erros = new Main();
-				ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(new File("logErros.txt")));
-				o.writeObject(erros);
-				o.close();
-				continue;
-			}
 		}
 	}
 }
