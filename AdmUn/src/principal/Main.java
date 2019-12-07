@@ -1,5 +1,5 @@
 package principal;
-import gui.Home;
+//import gui.Home;
 import gui.Menus;
 import estfis.Instituicao;
 import excecoes.*;
@@ -24,7 +24,11 @@ public class Main {
 				if (res.equals("1")) {
 					while (true) {
 						try {
+
 							Menus.menu("Instituições", inst);
+
+							Menus.menu("InstituiÃ§Ãµes", inst, "AdmUn");
+
 							String res2 = Menus.entrada();
 
 							if (res2.equals("<")) {
@@ -32,10 +36,10 @@ public class Main {
 							} else if (res2.equals("+")) {
 								cadnewin();
 							} else if (res2.equals("-")) {
-								delinst();
+								Menus.del(inst, "InstituiÃ§Ã£o");
 							} else {
 								int id = Integer.parseInt(res2);
-								inst.get(id - 1).home();
+								inst.get(id - 1).home(inst.get(id-1).getEst());
 							}
 						} catch (NumberFormatException e) {
 							JOptionPane.showMessageDialog(null, "Informe a posição na lista de instituições ");
