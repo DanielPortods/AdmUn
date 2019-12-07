@@ -1,7 +1,10 @@
 package estfis;
 
+import java.util.ArrayList;
 
- public class Sala extends Estrutura {
+import excecoes.CampoEmBrancoException;
+
+public class Sala extends Estrutura {
 	private int capacidade,
 	andar,txoc,projetor;
 	private String tipo[];
@@ -55,11 +58,29 @@ package estfis;
 	 private void setTipo(String[] tipo) {
 		this.tipo = tipo;
 	}
-	 String getnompr() {
+	 public String getnome() {
 		return nompr;
 	}
 	 void setnompr(String nompr) {
 		this.nompr = nompr;
+	}
+
+	@Override
+	public ArrayList<? extends Estrutura> getEst() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected void caNew() throws CampoEmBrancoException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void opt() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

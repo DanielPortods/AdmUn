@@ -19,10 +19,10 @@ public class FormCad extends JFrame {
 		
 		setSize(800, 600);
 		setLocationRelativeTo(null);
-		setTitle("Gerenciador de universidades");
+		setTitle("Dados da Instituição");
 		setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 		
-		btnl = new JButton("Cadastrar Instituição");
+		btnl = new JButton("Cadastrar");
 		btnl.addActionListener(new ActionListenerBtnCadastrar());
 		add(btnl);
 		

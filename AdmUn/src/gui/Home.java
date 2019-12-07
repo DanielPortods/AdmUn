@@ -13,6 +13,7 @@ import javax.swing.JMenuItem;
 
 public class Home extends JFrame {
 	
+	static FormCad form;
 	private JButton btnl;
 	public Home () {
 		setSize(800, 600);
@@ -32,7 +33,6 @@ class ActionListenerBtnCadastrar implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		
-		
+		Home.form = new FormCad();	
 	}	
 }
