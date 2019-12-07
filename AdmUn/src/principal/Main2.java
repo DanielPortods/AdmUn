@@ -25,9 +25,7 @@ public class Main2 {
 					while (true) {
 						try {
 
-							Menus.menu("Instituições", inst, null);
-
-							Menus.menu("InstituiÃ§Ãµes", inst, "AdmUn");
+							Menus.menu("Instituições", inst, "AdmUn");
 
 							String res2 = Menus.entrada();
 
