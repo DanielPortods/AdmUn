@@ -1,10 +1,14 @@
 package estfis;
 import java.util.ArrayList;
+import estfis.Sala;
 import java.util.List;
+
+import javax.swing.JOptionPane;
 
 import estfis.Sala;
 
 import java.util.ArrayList;
+
 
 import excecoes.CampoEmBrancoException;
 
@@ -38,12 +42,6 @@ public class Predio extends Estrutura{
 	 void setTxoc(int txoc) {
 		this.txoc = txoc;
 	}
-	public void cadSala(int capac, int andar,int projetor,String[] tipo,String nompr) {
-		txoc = 0;
-			Sala sala = new Sala(capac, andar, txoc, projetor,tipo,nompr); 
-			salas.add(sala);
-			
-		}
 	
 
 	@Override
@@ -52,10 +50,98 @@ public class Predio extends Estrutura{
 		return null;
 	}
 
-	@Override
 	protected void caNew() throws CampoEmBrancoException {
-		// TODO Auto-generated method stub
+		String nome = null;
+		int capacidade = 0;
+		int andar =0;
+		int txoc =0;
+		String tipo = null;
+		int projetor = 0;
+		String predio = null;
 		
+		while (true) {	
+			try {
+				nome = JOptionPane.showInputDialog("Nome da sala:");
+				if(nome == null) {
+					return;					
+				}
+				else if (nome.trim().length() == 0) {
+					throw new CampoEmBrancoException("o nome da sala");
+				}
+				else {
+					break;
+				}
+			} catch (CampoEmBrancoException e) {
+				e.msg();
+				continue;
+			} 
+		}
+		while (true) {	
+			try {
+				predio = JOptionPane.showInputDialog("EM QUE PREDIO?:");
+				if(predio == null) {
+					return;					
+				}
+				else if (predio.trim().length() == 0) {
+					throw new CampoEmBrancoException("o nome do predio");
+				}
+				else {
+					break;
+				}
+			} catch (CampoEmBrancoException e) {
+				e.msg();
+				continue;
+			} 
+		}
+		while (true) {	
+			try {
+				tipo = JOptionPane.showInputDialog("Tipo da Sala:");
+				if(tipo == null) {
+					return;					
+				}
+				else if (tipo.trim().length() == 0) {
+					throw new CampoEmBrancoException("o tipo da sala");
+				}
+				else {
+					break;
+				}
+			} catch (CampoEmBrancoException e) {
+				e.msg();
+				continue;
+			} 
+		}
+		
+		while(true) {			
+			try {
+				capacidade = Integer.parseInt(JOptionPane.showInputDialog("Capacidade:"));
+				 if (capacidade == 0) {
+					throw new CampoEmBrancoException("a capacidade da" + nome);
+				}
+				else {
+					break;
+				}		
+			}catch(CampoEmBrancoException e) {
+				e.msg();
+			}	
+		}
+		while(true) {			
+			try {
+				projetor = Integer.parseInt(JOptionPane.showInputDialog("Quantos projetores?:"));
+				 if (projetor == 0) {
+					throw new CampoEmBrancoException("quantidade de projetores da" + nome);
+				}
+				else {
+					
+					
+					
+					Sala i = new Sala(capacidade, andar,txoc,projetor,tipo,predio);
+					salas.add(i);
+					break;
+				}		
+			}catch(CampoEmBrancoException e) {
+				e.msg();
+			}	
+		}
 	}
 
 	@Override

@@ -7,17 +7,18 @@ import excecoes.CampoEmBrancoException;
 public class Sala extends Estrutura {
 	private int capacidade,
 	andar,txoc,projetor;
-	private String tipo[];
+	private String tipo;
 	private String nompr;
 
-	
-	public Sala (int cap, int andar, int txoc, int projetor,String[] tipo, String nomepr) {
+
+	public Sala (int cap, int andar, int txoc, int projetor,String tipo, String nomepr) {
 		this.capacidade = cap;
 		this.andar = andar;
 		this.txoc = txoc;
 		this.projetor = projetor;
-		this.tipo[3] = tipo[3];
+		this.tipo = tipo;
 		this.nompr = nomepr;
+		this.formest = "SALA";
 		
 		
 	}
@@ -52,10 +53,10 @@ public class Sala extends Estrutura {
 	 void setProjetor(int projetor) {
 		this.projetor = projetor;
 	}
-	 private String[] getTipo() {
+	 public String getTipo() {
 		return tipo;
 	}
-	 private void setTipo(String[] tipo) {
+	 private void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 	 public String getnome() {
