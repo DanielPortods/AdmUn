@@ -1,7 +1,7 @@
 package usr;
 
 public class Professor {
-	String nome;
+	String nome; 
 	int cadastro;
 	
 	public Professor(String nome, int cadastro) {

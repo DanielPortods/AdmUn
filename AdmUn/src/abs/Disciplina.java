@@ -3,13 +3,11 @@ package abs;
 public class Disciplina {
 
 	private String nome;
-	private int codigo;
 	private int credito;
-	private char tipo;
+	private String tipo;
 	
-	public Disciplina(String nome, int codigo, int credito, char tipo) {
+	public Disciplina(String nome, int credito, String tipo) {
 		this.nome = nome;
-		this.codigo = codigo;
 		this.credito = credito;
 		this.tipo = tipo;
 	}
@@ -18,16 +16,12 @@ public class Disciplina {
 		return this.nome;
 	}
 	
-	public int getCodigo() {
-		return this.codigo;
-	}
-	
 	public int getCredito() {
 		return this.credito;
 	}
 	
-	public char getTipo() {
-		return this.char;
+	public String getTipo() {
+		return this.tipo;
 	}
 
 }

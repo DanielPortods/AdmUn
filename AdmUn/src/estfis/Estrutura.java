@@ -12,6 +12,8 @@ public abstract class Estrutura {
 	public abstract ArrayList<? extends Estrutura> getEst();
 	protected abstract void caNew() throws CampoEmBrancoException;
 	protected abstract void opt() throws OpcaoInvalidaException;
+	protected abstract void det();
+	
 	public void home (ArrayList<? extends Estrutura> cp) throws CampoEmBrancoException, OpcaoInvalidaException {
 		while (true) {
 			try {

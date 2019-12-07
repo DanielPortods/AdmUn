@@ -25,4 +25,10 @@ public class Campus extends Estrutura {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	protected void det() {
+		// TODO Auto-generated method stub
+		
+	}
 }

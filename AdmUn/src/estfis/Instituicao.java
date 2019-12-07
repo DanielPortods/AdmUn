@@ -1,5 +1,4 @@
 package estfis;
-
 import usr.*;
 import abs.Disciplina;
 import java.util.ArrayList;
@@ -26,6 +25,58 @@ public class Instituicao extends Estrutura {
 		this.formest = "Campus";
 	}
 
+	protected void det() {
+		while (true) {
+			System.out.println("--------------- Detalhes ---------------");
+			System.out.println("Nome: " + this.nome);
+			System.out.println("Uf: " + this.uf);
+			System.out.println("Alunos matriculados: " + alsCadastrados.size());
+			System.out.println("Professores cadastrados: " + profsCadastrados.size());
+			System.out.println("Quantidade de disciplinas: " + discCadastradas.size());
+			System.out.print("\n[<] Voltar [1] Mudar nome [2] Mudar uf");
+			String res = Menus.entrada();
+
+			if (res.equals("<")) {
+				break;
+			} else if (res.equals("1")) {
+				String nome;
+				while (true) {
+					try {
+						nome = JOptionPane.showInputDialog("Nome:");
+						if (nome == null) {
+							break;
+						} else if (nome.trim().length() == 0) {
+							throw new CampoEmBrancoException("o nome da instituição");
+						} else {
+							changename(nome);
+							break;
+						}
+					} catch (CampoEmBrancoException e) {
+						e.msg();
+						continue;
+					}
+				}
+			} else if (res.equals("2")) {
+				String uf;
+				while (true) {
+					try {
+						uf = JOptionPane.showInputDialog("UF:");
+						if (uf == null) {
+							break;
+						} else if (uf.trim().length() == 0) {
+							throw new CampoEmBrancoException("a UF da instituição");
+						} else {
+							changeUf(uf);
+							break;
+						}
+					} catch (CampoEmBrancoException e) {
+						e.msg();
+					}
+				}
+			}
+		}
+	}
+	
 	public ArrayList<? extends Estrutura> getEst() {
 		return this.cp;
 	}
@@ -80,16 +131,22 @@ public class Instituicao extends Estrutura {
 				System.out.println("[<] Voltar");
 				String res = Menus.entrada();
 				if(res.equals("1")) {
-					
-					
+					det();
 				} else if(res.equals("2")) {
 					while(true) {
 						Menus.menu("Professores", profsCadastrados, this.nome);
 						String res2 = Menus.entrada();
 					}
 				} else if(res.equals("3")) {
-					
+					while(true) {
+						Menus.menu("Alunos", alsCadastrados, this.nome);
+						String res2 = Menus.entrada();
+					}
 				} else if(res.equals("4")) {
+					while(true) {
+						Menus.menu("Disciplinas", discCadastradas, this.nome);
+						String res2 = Menus.entrada();
+					}
 					
 				} else if(res.equals("<")) {
 					break;
@@ -141,10 +198,10 @@ public class Instituicao extends Estrutura {
 	}
 
 	// método para cadastro de disciplinas
-	public void cadDisc(String nome, int codigo, int credito, char tipo) {
+	/*public void cadDisc(String nome, int codigo, int credito, char tipo) {
 		Disciplina disciplina = new Disciplina(nome, codigo, credito, tipo);
 		discCadastradas.add(disciplina);
-	}
+	}*/
 
 	// método para retornar as disciplinas cadastradas na instituição
 	public void discCadas() {
@@ -153,7 +210,7 @@ public class Instituicao extends Estrutura {
 
 		for (i = 0; i < qntDisciplinasCadastradas; i++) {
 			System.out.println(discCadastradas.get(i).getNome());
-			System.out.println(discCadastradas.get(i).getCodigo());
+			//System.out.println(discCadastradas.get(i).getCodigo());
 			System.out.println(discCadastradas.get(i).getCredito());
 			System.out.println(discCadastradas.get(i).getTipo());
 		}
