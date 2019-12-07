@@ -38,8 +38,8 @@ public class Main {
 							}
 						} catch (NumberFormatException e) {
 							JOptionPane.showMessageDialog(null, "Informe a posição na lista de instituições ");
-
-											Main erros = new Main();			ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(new File("logErros.txt")));
+							Main erros = new Main();
+							ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(new File("logErros.txt")));
 							o.writeObject(erros);
 							o.close();
 							continue;
