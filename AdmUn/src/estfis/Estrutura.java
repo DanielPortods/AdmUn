@@ -11,8 +11,8 @@ public abstract class Estrutura {
 	
 	public abstract ArrayList<? extends Estrutura> getEst();
 	protected abstract void caNew() throws CampoEmBrancoException;
-	protected abstract void opt();
-	public void home (ArrayList<? extends Estrutura> cp) throws CampoEmBrancoException{
+	protected abstract void opt() throws OpcaoInvalidaException;
+	public void home (ArrayList<? extends Estrutura> cp) throws CampoEmBrancoException, OpcaoInvalidaException {
 		while (true) {
 			try {
 				Menus.menu(this.formest, cp, getnome());
@@ -42,7 +42,7 @@ public abstract class Estrutura {
 		return this.nome;
 	}
 	
-	void changename (String nom) {
+	protected void changename (String nom) {
 		this.nome = nom;
-	}	
+	}
 }

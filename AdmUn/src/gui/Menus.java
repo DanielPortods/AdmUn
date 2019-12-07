@@ -1,12 +1,9 @@
 package gui;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import javax.swing.JOptionPane;
-
 import estfis.Estrutura;
-
-
+import usr.*;
 public class Menus {
 	
 	public static void enter() {
@@ -16,12 +13,12 @@ public class Menus {
 		System.out.println("          [2] Fechar");
 	}
 	
-	public static void menu(String tp, ArrayList<? extends Estrutura> o, String nom) {
+	public static void menu(String tp, ArrayList<? extends Object> o, String nom) {
 		System.out.println("--------------- " + nom + " ---------------");
 		System.out.println("  " + tp + ":");
 		
 		for(int i=0; i<o.size(); i++) {
-			System.out.println("[" + (i+1) + "] " + o.get(i).getnome());
+			System.out.println("[" + (i+1) + "] " + ((Estrutura) o.get(i)).getnome());
 		}
 		System.out.println("\nQuantidade de " + tp + ": " + o.size());
 		System.out.print("[+] Cadastrar " + tp + " [-] Excluir " + tp+"\n[<] Voltar");
@@ -29,8 +26,12 @@ public class Menus {
 	
 	public static String entrada() {
 		System.out.println();
-		Scanner sc = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);		
 		String r = sc.next();
+		
+		if(r.equalsIgnoreCase("exit")) {
+			System.exit(0);
+		}
 		return r;
 	}
 	
