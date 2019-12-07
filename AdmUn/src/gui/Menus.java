@@ -40,8 +40,7 @@ public class Menus {
 				String ids = JOptionPane.showInputDialog("Informe o número de qual " + tp + " deseja excluir:");
 				if (ids == null) {
 					break;
-				}
-				else {
+				} else {
 					int id = Integer.parseInt(ids);
 					lst.remove(id - 1);
 					break;
@@ -55,4 +54,6 @@ public class Menus {
 			}
 		}
 	}
+	
+	
 }

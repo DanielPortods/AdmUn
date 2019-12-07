@@ -69,9 +69,9 @@ public class Instituicao extends Estrutura {
 			}
 		}
 		
-		@Override
 		protected void opt(){
-			super.opt();
+			System.out.println("--------------- Opções ---------------");
+			System.out.println("[1] Detalhes");
 			System.out.println("[2] Professores");
 			System.out.println("[3] Alunos");
 			System.out.println("[4] Disciplinas");

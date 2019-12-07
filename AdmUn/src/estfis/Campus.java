@@ -19,4 +19,10 @@ public class Campus extends Estrutura {
 	protected void caNew() throws CampoEmBrancoException{
 		
 	}
+
+	@Override
+	protected void opt() {
+		// TODO Auto-generated method stub
+		
+	}
 }
