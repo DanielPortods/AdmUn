@@ -1,7 +1,7 @@
 package excecoes;
 import javax.swing.JOptionPane;
 
-public class CampoEmBrancoException extends Exception {
+public class CampoEmBrancoException extends LogGeralException {
 	
 	private static final long serialVersionUID = 1L;
 	private String tp;
