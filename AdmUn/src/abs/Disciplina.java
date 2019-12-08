@@ -14,16 +14,32 @@ public class Disciplina {
 		this.tipo = tipo;
 	}
 	
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	
 	public String getNome() {
 		return this.nome;
+	}
+	
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
 	}
 	
 	public int getCodigo() {
 		return this.codigo;
 	}
 	
+	public void setCredito(int credito) {
+		this.credito = credito;
+	}
+	
 	public int getCredito() {
 		return this.credito;
+	}
+	
+	public void setTipo(char tipo) {
+		this.tipo = tipo;
 	}
 	
 	public char getTipo() {

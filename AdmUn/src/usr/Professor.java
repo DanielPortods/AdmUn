@@ -9,8 +9,16 @@ public class Professor {
 		this.cadastro = cadastro;
 	}
 	
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	
 	public String getNome() {
 		return this.nome;
+	}
+	
+	public void setCadastro(int cadastro) {
+		this.cadastro = cadastro;
 	}
 	
 	public int getCadastro() {
