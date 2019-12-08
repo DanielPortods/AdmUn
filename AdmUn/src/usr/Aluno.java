@@ -9,7 +9,7 @@ public class Aluno {
 		this.matricula = matricula;
 	}
 	
-	public String getNome() {
+	public String getnome() {
 		return this.nome;
 	}
 	

@@ -10,7 +10,7 @@ public class Main {
 	//private static Home h;
 	private static ArrayList<Instituicao> inst = new ArrayList<>();
 	
-	public static void main(String[] args) throws OpcaoInvalidaException, NumberFormatException, CampoEmBrancoException{
+	public static void main(String[] args) throws OpcaoInvalidaException, NumberFormatException, CampoEmBrancoException, DisciplinaNaoInformadaException, ProfessorNaoAtribuidoException, TipoDeAulaNaoAtribuidoException{
 
 		while (true) {
 			try {
@@ -23,9 +23,12 @@ public class Main {
 							String res2 = Menus.entrada();
 
 							if (res2.equals("<")) {
-								break;
+								continue;
 							} else if (res2.equals("+")) {
-								cadnewin();
+								ArrayList<String> pal = new ArrayList<>();
+								pal.add("Nome");
+								pal.add("UF");
+								inst.add((Instituicao)Menus.caNew(2, pal, "I"));
 							} else if (res2.equals("-")) {
 								Menus.del(inst, "Instituição");
 							} else {
@@ -35,12 +38,15 @@ public class Main {
 						} catch (NumberFormatException e) {
 							JOptionPane.showMessageDialog(null, "Informe a posição na lista de instituições ");
 							continue;
+						} catch (IndexOutOfBoundsException e) {
+							JOptionPane.showMessageDialog(null, "Instituição inexistente!");
+							continue;
 						}
 					}
 				} else if (res.equals("2")) {
 					break;
 				} else {
-					throw new OpcaoInvalidaException();
+					throw new OpcaoInvalidaException(1);
 				}
 			} catch (OpcaoInvalidaException e) {
 				e.msg();
@@ -49,46 +55,7 @@ public class Main {
 		}	
 	}
 	
-	static void cadnewin() throws CampoEmBrancoException {
-		
-		String nome = null;
-		String uf = null;
-		
-		while (true) {	
-			try {
-				nome = JOptionPane.showInputDialog("Nome:");
-				if(nome == null) {
-					return;					
-				}
-				else if (nome.trim().length() == 0) {
-					throw new CampoEmBrancoException("o nome da instituição");
-				}
-				else {
-					break;
-				}
-			} catch (CampoEmBrancoException e) {
-				e.msg();
-				continue;
-			} 
-		}
-		
-		while(true) {			
-			try {
-				uf = JOptionPane.showInputDialog("UF:");
-				if(uf == null) {
-					return;
-				}
-				else if (uf.trim().length() == 0) {
-					throw new CampoEmBrancoException("a UF da instituição");
-				}
-				else {
-					Instituicao i = new Instituicao(nome, uf);
-					inst.add(i);
-					break;
-				}		
-			}catch(CampoEmBrancoException e) {
-				e.msg();
-			}	
-		}
+	public static ArrayList<Instituicao> getInst () {
+		return Main.inst;
 	}
 }

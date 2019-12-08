@@ -2,22 +2,19 @@ package estfis;
 import usr.*;
 import abs.Disciplina;
 import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
-
 import usr.Professor;
 import excecoes.*;
 import gui.Menus;
+import principal.Main;
 
 public class Instituicao extends Estrutura {
 	private String uf;
 	private ArrayList<Campus> cp = new ArrayList<>();
-	private ArrayList<Professor> profsCadastrados = new ArrayList<Professor>(); // array list dos professores
-																				// cadastrados nessa instituição
-	private ArrayList<Aluno> alsCadastrados = new ArrayList<Aluno>(); // array list dos alunos cadastrados nessa
-																		// instiuição
+	private ArrayList<Professor> profsCadastrados = new ArrayList<Professor>(); // array list dos professores																			
+	private ArrayList<Aluno> alsCadastrados = new ArrayList<Aluno>(); // array list dos alunos cadastrados nessa																	
 	private ArrayList<Disciplina> discCadastradas = new ArrayList<Disciplina>(); // array list das disciplinas
-																					// cadastradas nessa instituição
+																					
 
 	public Instituicao(String nome, String uf) {
 		this.nome = nome;
@@ -77,49 +74,19 @@ public class Instituicao extends Estrutura {
 		}
 	}
 	
-	public ArrayList<? extends Estrutura> getEst() {
+	public ArrayList<Campus> getEst() {
 		return this.cp;
 	}
 
-	protected void caNew() throws CampoEmBrancoException {
-		String nome = null;
-		String cidade = null;
-
-		while (true) {
-			try {
-				nome = JOptionPane.showInputDialog("Nome:");
-				if (nome == null) {
-					return;
-				} else if (nome.trim().length() == 0) {
-					throw new CampoEmBrancoException("o nome do campus");
-				} else {
-					break;
-				}
-			} catch (CampoEmBrancoException e) {
-				e.msg();
-				continue;
-			}
-		}
-
-		while (true) {
-			try {
-				cidade = JOptionPane.showInputDialog("Cidade:");
-				if (cidade == null) {
-					return;
-				} else if (uf.trim().length() == 0) {
-					throw new CampoEmBrancoException("a cidade do campus " + nome);
-				} else {
-					Campus i = new Campus(nome, cidade);
-					cp.add(i);
-					break;
-				}
-			} catch (CampoEmBrancoException e) {
-				e.msg();
-			}
-		}
+	protected void caNew() throws CampoEmBrancoException, DisciplinaNaoInformadaException, ProfessorNaoAtribuidoException, TipoDeAulaNaoAtribuidoException, OpcaoInvalidaException {
+		ArrayList<String> pal = new ArrayList<>();
+		pal.add("Nome");
+		pal.add("Cidade");
+		pal.add(Integer.toString(findself()));
+		cp.add((Campus) Menus.caNew(2, pal, "C"));
 	}
 
-	protected void opt() {
+	protected void opt() throws DisciplinaNaoInformadaException, ProfessorNaoAtribuidoException, CampoEmBrancoException, TipoDeAulaNaoAtribuidoException {
 
 		while (true) {
 			try {
@@ -136,87 +103,88 @@ public class Instituicao extends Estrutura {
 					while(true) {
 						Menus.menu("Professores", profsCadastrados, this.nome);
 						String res2 = Menus.entrada();
+						if(res2.equals("<")) {
+							break;
+						} else if(res2.equals("+")) {
+							ArrayList<String> pal = new ArrayList<>();
+							pal.add("Nome");
+							pal.add("Cadastro");
+							profsCadastrados.add((Professor) Menus.caNew(2, pal, "Pr"));
+						} else if(res2.equals("-")) {
+							Menus.del(profsCadastrados, "professor");
+						} else {
+							// turmas do professor se der tempo
+						}
 					}
 				} else if(res.equals("3")) {
 					while(true) {
 						Menus.menu("Alunos", alsCadastrados, this.nome);
 						String res2 = Menus.entrada();
+						if(res2.equals("<")) {
+							break;
+						} else if(res2.equals("+")) {
+							ArrayList<String> pal = new ArrayList<>();
+							pal.add("Nome");
+							pal.add("Matrícula");
+							alsCadastrados.add((Aluno) Menus.caNew(2, pal, "A"));
+						} else if(res2.equals("-")) {
+							Menus.del(alsCadastrados, "aluno");
+						} else {
+							// turmas do aluno se der tempo
+						}
 					}
 				} else if(res.equals("4")) {
 					while(true) {
 						Menus.menu("Disciplinas", discCadastradas, this.nome);
 						String res2 = Menus.entrada();
+						if(res2.equals("<")) {
+							break;
+						} else if(res2.equals("+")) {
+							ArrayList<String> pal = new ArrayList<>();
+							pal.add("Nome");
+							pal.add("Créditos");
+							pal.add("Categoria");
+							discCadastradas.add((Disciplina) Menus.caNew(3, pal, "D"));
+						} else if(res2.equals("-")) {
+							Menus.del(discCadastradas, "disciplina");
+						} else {
+							//quantidade de turmas da disciplina se der tempo
+						}
 					}
 					
 				} else if(res.equals("<")) {
 					break;
 				} else {
-					throw new OpcaoInvalidaException();
+					throw new OpcaoInvalidaException(1);
 				}
 			} catch (OpcaoInvalidaException e) {
 				e.msg();
 			}
 		}
-	}
-
-	// método para cadastro de professores
-	public void cadProf(String nome, int cadastro) {
-		Professor professor = new Professor(nome, cadastro); // cria um novo objeto da classe Professor com os
-																// parâmetros recebidos
-		profsCadastrados.add(professor); // adiciona o novo objeto criado no array list dos professores cadastrados
-											// nessa disciplina
-	}
-
-	// método para retornar os professores cadastrados na instituição
-	public void profCads() {
-		int qntProfessoresCadastrados = profsCadastrados.size(); // encontra o tamanho atual do array list dos
-																	// professores cadastrados nessa instituição
-		int i; // contador
-
-		for (i = 0; i < qntProfessoresCadastrados; i++) {
-			System.out.println(profsCadastrados.get(i).getNome()); // retorna o nome do professor
-			System.out.println(profsCadastrados.get(i).getCadastro()); // retorna o cadastro do professor
-		}
-	}
-
-	// método para cadastro de alunos
-	public void cadAls(String nome, int matricula) {
-		Aluno aluno = new Aluno(nome, matricula); // cria um novo objeto da classe Aluno com os parâmetros
-		alsCadastrados.add(aluno); // adiciona o novo objeto criado no array list dos alunos cadastrados nessa
-									// disciplina
-	}
-
-	// método para retornar os alunos cadastrados na instituição
-	public void alsCads() {
-		int qntAlunosCadastrados = alsCadastrados.size(); // encontra o tamanho atual do array list dos alunos
-		int i; // contador
-
-		for (i = 0; i < qntAlunosCadastrados; i++) {
-			System.out.println(alsCadastrados.get(i).getNome()); // retorna o nome do aluno
-			System.out.println(alsCadastrados.get(i).getMatricula()); // retorna a matrícula do aluno
-		}
-	}
-
-	// método para cadastro de disciplinas
-	/*public void cadDisc(String nome, int codigo, int credito, char tipo) {
-		Disciplina disciplina = new Disciplina(nome, codigo, credito, tipo);
-		discCadastradas.add(disciplina);
-	}*/
-
-	// método para retornar as disciplinas cadastradas na instituição
-	public void discCadas() {
-		int qntDisciplinasCadastradas = discCadastradas.size(); // encontra o tamnho atual do array list das disciplinas
-		int i;
-
-		for (i = 0; i < qntDisciplinasCadastradas; i++) {
-			System.out.println(discCadastradas.get(i).getNome());
-			//System.out.println(discCadastradas.get(i).getCodigo());
-			System.out.println(discCadastradas.get(i).getCredito());
-			System.out.println(discCadastradas.get(i).getTipo());
-		}
-	}
+	}	
 	
 	private void changeUf(String uf) {
 		this.uf = uf;
+	}
+
+	public ArrayList<Professor> getProfsCadastrados() {
+		return profsCadastrados;
+	}
+
+	public ArrayList<Aluno> getAlsCadastrados() {
+		return alsCadastrados;
+	}
+
+	public ArrayList<Disciplina> getDiscCadastradas() {
+		return discCadastradas;
+	}	
+
+	private int findself() {
+		for (int i = 0; i<Main.getInst().size(); i++) {
+			if (Main.getInst().get(i).getnome().equals(this.nome)) {
+				return i;
+			}
+		}
+	return -1;
 	}
 }

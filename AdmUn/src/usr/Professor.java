@@ -4,12 +4,16 @@ public class Professor {
 	String nome; 
 	int cadastro;
 	
+	public Professor() {
+		
+	}
+	
 	public Professor(String nome, int cadastro) {
 		this.nome = nome;
 		this.cadastro = cadastro;
 	}
 	
-	public String getNome() {
+	public String getnome() {
 		return this.nome;
 	}
 	
