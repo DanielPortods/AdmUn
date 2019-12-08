@@ -63,7 +63,7 @@ public class Campus extends Estrutura {
 				} else if(res.equals("<")) {
 					break;
 				} else {
-					throw new OpcaoInvalidaException(1);
+					throw new OpcaoInvalidaException(0, 1);
 				}
 			} catch (OpcaoInvalidaException e) {
 				e.msg();

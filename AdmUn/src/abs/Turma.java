@@ -12,6 +12,10 @@ public class Turma {
 		this.ds=ds;
 	}
 	
+	public Professor getprof () {
+		return this.prof;
+	}
+	
 	public Disciplina getdisc() {
 		return this.ds;
 	}

@@ -23,7 +23,7 @@ public class Main {
 							String res2 = Menus.entrada();
 
 							if (res2.equals("<")) {
-								continue;
+								break;
 							} else if (res2.equals("+")) {
 								ArrayList<String> pal = new ArrayList<>();
 								pal.add("Nome");
@@ -35,10 +35,10 @@ public class Main {
 								int id = Integer.parseInt(res2);
 								inst.get(id - 1).home(inst.get(id-1).getEst());
 							}
-						} catch (NumberFormatException e) {
+						}catch (NumberFormatException e) {
 							JOptionPane.showMessageDialog(null, "Informe a posição na lista de instituições ");
 							continue;
-						} catch (IndexOutOfBoundsException e) {
+						}catch (IndexOutOfBoundsException e) {
 							JOptionPane.showMessageDialog(null, "Instituição inexistente!");
 							continue;
 						}
@@ -46,7 +46,7 @@ public class Main {
 				} else if (res.equals("2")) {
 					break;
 				} else {
-					throw new OpcaoInvalidaException(1);
+					throw new OpcaoInvalidaException(0, 1);
 				}
 			} catch (OpcaoInvalidaException e) {
 				e.msg();

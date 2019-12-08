@@ -53,10 +53,22 @@ public class Menus {
 					o.remove(i);
 				}
 			}
-		}else {
-			for (int i = 0; i < o.size(); i++) {
-				System.out.println("[" + (i + 1) + "] " + ((Estrutura) o.get(i)).getnome());
+		} else if(tp.equals("Salas")) {
+			for(int i=0; i<o.size(); i++) {
+				if(((Sala) o.get(i)) != null) {
+					System.out.println("[" + (i+1) + "] " + ((Sala) o.get(i)).getnome() + " - " + ((Sala) o.get(i)).gettp());
+				}else {
+					o.remove(i);
+				}
 			}
+		} else {
+			for (int i = 0; i < o.size(); i++) {
+				if(((Estrutura) o.get(i)) != null) {
+					System.out.println("[" + (i + 1) + "] " + ((Estrutura) o.get(i)).getnome());
+				} else {
+					o.remove(i);
+				}
+			}	
 		}
 		
 		System.out.println("\nQuantidade de " + tp + ": " + o.size());
@@ -166,13 +178,13 @@ public class Menus {
 					}
 				} else if (i==1 && T.equals("T")) {
 					if(veripr(dados[1], Integer.parseInt(pal.get(3)))==null) {
-						throw new OpcaoInvalidaException(3);
+						throw new OpcaoInvalidaException(0, 3);
 					}else {
 						pro = veripr(dados[1], Integer.parseInt(pal.get(3)));
 					}
 				} else if (i==0 && T.equals("T")) {
 					if(veridic(dados[0], Integer.parseInt(pal.get(3)))==null) {
-						throw new OpcaoInvalidaException(4);
+						throw new OpcaoInvalidaException(0, 4);
 					}else {
 						dic = veridic(dados[0], Integer.parseInt(pal.get(3)));
 					}
@@ -183,19 +195,33 @@ public class Menus {
 					} else if (T.equals("P")) {
 						Predio p = new Predio(dados[0], Integer.parseInt(dados[1]));
 						return p;
-					} else if (T.equals("S")) {
-						if (veriCat(dados[3], T)) {
-							Sala s = new Sala(dados[0], dados[1], dados[2], dados[3]);
-							return s;
+					} else if (T.equals("SA")) {
+						if (veriCat(dados[2], "S")) {
+							Auditorio sa = new Auditorio(dados[0], Integer.parseInt(dados[1]), dados[2], pal.get(3), Integer.parseInt(pal.get(4)));
+							return sa;
 						} else {
-							throw new OpcaoInvalidaException(2);
+							throw new OpcaoInvalidaException(0, 2);
+						}
+					} else if (T.equals("SL")) {
+						if (veriCat(dados[2], "S")) {
+							Lab sl = new Lab(dados[0], Integer.parseInt(dados[1]), dados[2], pal.get(3), Integer.parseInt(pal.get(4)));
+							return sl;
+						} else {
+							throw new OpcaoInvalidaException(0, 2);
+						}
+					} else if (T.equals("SC")) {
+						if (veriCat(dados[2], "S")) {
+							Comum sc = new Comum(dados[0], Integer.parseInt(dados[1]), dados[2], pal.get(3), Integer.parseInt(pal.get(4)));
+							return sc;
+						} else {
+							throw new OpcaoInvalidaException(0, 2);
 						}
 					} else if (T.equals("D")) {
 						if (veriCat(dados[2], T)) {
 							Disciplina d = new Disciplina(dados[0], Integer.parseInt(dados[1]), dados[2]);
 							return d;
 						} else {
-							throw new OpcaoInvalidaException(2);
+							throw new OpcaoInvalidaException(0, 2);
 						}
 					} else if (T.equals("Pr")) {
 						Professor pr = new Professor(dados[0], Integer.parseInt(dados[1]));
@@ -247,14 +273,14 @@ public class Menus {
 				return false;
 			}
 			else {
-				for (int i=0; i<3; i++) {
+				for (int i=0; i<took.length; i++) {
 					if(!took[i].equalsIgnoreCase("graduação") && !took[i].equalsIgnoreCase("pos-graduação") && !took[i].equalsIgnoreCase("extensão")) {
-						return true;
+						return false;
 					}
 				}
 				return true;
 			}
-		}else if(s.equalsIgnoreCase("Graduação") || s.equalsIgnoreCase("Pós-Graduação") || s.equalsIgnoreCase("Extenção")) {
+		}else if(s.equalsIgnoreCase("Graduação") || s.equalsIgnoreCase("Pós-Graduação") || s.equalsIgnoreCase("Extensão")) {
 			return true;
 		}else {
 			return false;

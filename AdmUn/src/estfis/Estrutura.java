@@ -12,8 +12,7 @@ public abstract class Estrutura {
 	
 	public abstract ArrayList<? extends Estrutura> getEst();
 	protected abstract void caNew() throws CampoEmBrancoException, DisciplinaNaoInformadaException, ProfessorNaoAtribuidoException, TipoDeAulaNaoAtribuidoException, OpcaoInvalidaException;
-	protected abstract void opt() throws DisciplinaNaoInformadaException, ProfessorNaoAtribuidoException, CampoEmBrancoException, 
-	  TipoDeAulaNaoAtribuidoException;
+	protected abstract void opt() throws DisciplinaNaoInformadaException, ProfessorNaoAtribuidoException, CampoEmBrancoException, TipoDeAulaNaoAtribuidoException;
 	protected abstract void det();
 	
 	public void home (ArrayList<? extends Estrutura> cp) throws CampoEmBrancoException, OpcaoInvalidaException, DisciplinaNaoInformadaException, ProfessorNaoAtribuidoException, TipoDeAulaNaoAtribuidoException {
