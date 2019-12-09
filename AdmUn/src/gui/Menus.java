@@ -72,7 +72,7 @@ public class Menus {
 		}
 		
 		System.out.println("\nQuantidade de " + tp + ": " + o.size());
-		System.out.print("[+] Cadastrar " + tp + " [-] Excluir " + tp+"\n[<] Voltar");
+		System.out.print("[+] Cadastrar " + tp + " [-] Excluir " + tp + "\n[<] Voltar");
 	}
 	
 	public static String entrada() {
@@ -309,5 +309,17 @@ public class Menus {
 		}
 		
 		return null;
+	}
+
+	public static void menuf(ArrayList<? extends Estrutura> o) {
+		System.out.println("Selecione:");
+		for(int i=0; i<o.size(); i++) {
+			if(((Estrutura) o.get(i)) != null) {
+				System.out.println("[" + (i+1) + "] " + ((Estrutura) o.get(i)).getnome());
+			}else {
+				o.remove(i);
+			}
+		}
+		System.out.println("[<] Voltar");
 	}
 }

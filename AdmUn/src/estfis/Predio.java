@@ -94,4 +94,10 @@ public class Predio extends Estrutura{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void home2() {
+		// TODO Auto-generated method stub
+		
+	}
 }

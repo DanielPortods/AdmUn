@@ -14,6 +14,7 @@ public abstract class Estrutura {
 	protected abstract void caNew() throws CampoEmBrancoException, DisciplinaNaoInformadaException, ProfessorNaoAtribuidoException, TipoDeAulaNaoAtribuidoException, OpcaoInvalidaException;
 	protected abstract void opt() throws DisciplinaNaoInformadaException, ProfessorNaoAtribuidoException, CampoEmBrancoException, TipoDeAulaNaoAtribuidoException;
 	protected abstract void det();
+	public abstract void home2(); 
 	
 	public void home (ArrayList<? extends Estrutura> cp) throws CampoEmBrancoException, OpcaoInvalidaException, DisciplinaNaoInformadaException, ProfessorNaoAtribuidoException, TipoDeAulaNaoAtribuidoException {
 		while (true) {
@@ -32,12 +33,16 @@ public abstract class Estrutura {
 					opt();
 				} else {
 					int id = Integer.parseInt(res);
-					cp.get(id - 1).home(cp.get(id-1).getEst());
+					if(this.formest.equals("Salas")) {
+						cp.get(id - 1).det();
+					}else {
+						cp.get(id - 1).home(cp.get(id-1).getEst());
+					}
 				}
 			} catch (NumberFormatException e) {
 				JOptionPane.showMessageDialog(null, "Informe a posição na lista de " + this.formest);
 				continue;
-			} catch (IndexOutOfBoundsException e) {
+			}catch (IndexOutOfBoundsException e) {
 				JOptionPane.showMessageDialog(null, this.formest + " inexistente!");
 				continue;
 			}

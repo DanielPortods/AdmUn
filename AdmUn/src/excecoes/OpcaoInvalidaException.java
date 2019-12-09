@@ -33,6 +33,8 @@ public class OpcaoInvalidaException extends Exception {
 		}else if(oc==6) {
 			JOptionPane.showMessageDialog(null, "Opção inválida!\n"
 											  + "Este Prédio possui " + and + " andares.");
-		}
+		}else if(oc==7) {
+			JOptionPane.showMessageDialog(null, "Prédio não cadastrado!");
+}
 	}
 }

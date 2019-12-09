@@ -58,6 +58,9 @@ public class Campus extends Estrutura {
 							turmas.add((Turma) Menus.caNew(3, pal, "T"));
 						} else if(res2.equals("-")) {
 							Menus.del(turmas, "turma");
+						} else {
+							int id = Integer.parseInt(res2);
+							turmas.get(id - 1).home(this.prd);
 						}
 					}
 				} else if(res.equals("<")) {
@@ -123,5 +126,11 @@ public class Campus extends Estrutura {
 
 	private void changeCity(String ct) {
 		this.cidade=ct;
+	}
+
+	@Override
+	public void home2() {
+		// TODO Auto-generated method stub
+		
 	}
 }
