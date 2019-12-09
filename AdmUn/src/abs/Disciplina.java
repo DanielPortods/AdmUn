@@ -3,35 +3,29 @@ package abs;
 public class Disciplina {
 
 	private String nome;
-	private int codigo;
 	private int credito;
-	private String tipo[];
-
-	public void setnom(String nom) {
+	private String categoria;
+	
+	public Disciplina() {
+		
+	}
+	
+	public Disciplina(String nome, int credito, String tipo) {
+		this.nome = nome;
+		this.credito = credito;
+		this.categoria = tipo;
+	}
+	
+	public String getNome() {
+		return this.nome;
+	}
+	
+	public int getCredito() {
+		return this.credito;
+	}
+	
+	public String getCat() {
+		return this.categoria;
 	}
 
-public String getnom() {
-	return nome;
-}
-
-	public void setcod(int cod) {
-	}
-
-	public int getcod() {
-		return codigo;
-	}
-
-	public void setcred(int cred) {
-	}
-
-	public int getcred() {
-		return credito;
-	}
-
-	public void settip(String tip[]) {
-	}
-
-	public String gettip(int x) {
-		return tipo[x];
-	}
 }
