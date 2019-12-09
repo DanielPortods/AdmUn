@@ -11,7 +11,7 @@ public class LogGeralException extends Exception {
 	private static final long serialVersionUID = 1L;	
 	private PrintWriter out;
 	
-	public LogGeralException() {
+	public void msg() throws IOException{
 		try {
 			out = new PrintWriter(new FileWriter("Erros.txt"));
 		} catch (IOException e) {
