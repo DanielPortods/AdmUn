@@ -9,8 +9,16 @@ public class Aluno {
 		this.matricula = matricula;
 	}
 	
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	
 	public String getNome() {
 		return this.nome;
+	}
+	
+	public void setMatricula(int matricula) {
+		this.matricula = matricula;
 	}
 	
 	public int getMatricula() {
