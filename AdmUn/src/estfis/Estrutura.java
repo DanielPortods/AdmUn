@@ -34,7 +34,23 @@ public abstract class Estrutura {
 				} else {
 					int id = Integer.parseInt(res);
 					if(this.formest.equals("Salas")) {
-						cp.get(id - 1).det();
+						while(true) {
+							try {	
+								cp.get(id - 1).det();
+								System.out.println("[<] Voltar  [*] definir");
+								String res3 = Menus.entrada();
+								if(res3.equals("<")) {
+									break;
+								}else if(res3.equals("*")) {
+									
+								}else {
+									throw new OpcaoInvalidaException(0, 1);
+								}
+							}catch(OpcaoInvalidaException e) {
+								e.msg();
+								continue;
+							}
+						}
 					}else {
 						cp.get(id - 1).home(cp.get(id-1).getEst());
 					}

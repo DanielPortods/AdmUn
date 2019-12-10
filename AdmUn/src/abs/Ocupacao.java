@@ -1,7 +1,7 @@
 package abs;
 
 public class Ocupacao {
-	private boolean[][] gradeHoraria = new boolean[5][7]; //true está ocupado, false está livre
+	private boolean[][] gradeHoraria = new boolean[7][5]; //true está ocupado, false está livre
 	private int qtdLivres;
 	private int qtdOcupados;
 	private int taxaOcupacao;
@@ -11,8 +11,8 @@ public class Ocupacao {
 		this.qtdOcupados = 0;
 		this.taxaOcupacao = 0;
 		
-		for(int i = 0; i < 5; i++) {
-			for(int j = 0; j < 7; j++) {
+		for(int i = 0; i < 7; i++) {
+			for(int j = 0; j < 5; j++) {
 				this.gradeHoraria[i][j] = false;
 			}
 		}

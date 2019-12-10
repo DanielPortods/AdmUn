@@ -41,8 +41,6 @@ public class Comum extends Sala {
 
 	@Override
 	protected void det() {
-		while (true) {
-			try {
 				System.out.println("--------------- " + this.nome + " ---------------");
 				System.out.println("   " + this.tipo);
 				System.out.println("Andar: " + this.andar);
@@ -50,20 +48,6 @@ public class Comum extends Sala {
 				System.out.println("Catergoria: " + this.categoria);
 				System.out.println("Ar condicionado: " + this.qtar + "  Lousa: " + this.numlousa + "\nProjetores: " + this.numproj + " Tablado: " + ((this.tablado==true) ? "Sim":"Não"));
 				System.out.println("\nTAXA DE OCUPAÇÃO: " + this.oc.getTaxaOcupacao());
-				System.out.println("\n[<] voltar  [*] mudar detalhes");
-				String res = Menus.entrada();
-
-				if (res.equals("<")) {
-					break;
-				} else {
-					throw new OpcaoInvalidaException(0, 1);
-				}
-			} catch (OpcaoInvalidaException e) {
-				e.msg();
-				continue;
-			}
-		}
-		
+				tab();
 	}
-
 }
