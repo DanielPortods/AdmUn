@@ -8,12 +8,33 @@ import gui.Menus;
 
 public class Predio extends Estrutura{
 	private int andares;
-	ArrayList<Sala> sal = new ArrayList<>(); 
+	ArrayList<Sala> sal = new ArrayList<>();
+	
+	private int taxaOcupacao;
 	
 	public Predio(String nome, int and) {
 		this.nome=nome;
 		this.andares=and;
 		this.formest="Salas";
+	}
+	
+	public void setTaxaOcupacao() {
+		int qtdSalas = sal.size();
+		int i = 0;
+		
+		int somaPeriodosOcupados = 0;
+		int somaPeriodosLivres = 0;
+		
+		for(i = 0; i < qtdSalas; i++) {
+			somaPeriodosOcupados += sal.get(i).oc.getQtdOcupados();
+			somaPeriodosLivres += sal.get(i).oc.getQtdLivres();
+		}
+		
+		this.taxaOcupacao = somaPeriodosOcupados / somaPeriodosLivres;
+	}
+	
+	public int getTaxaOcupacao() {
+		return this.taxaOcupacao;
 	}
 	
 	@Override
