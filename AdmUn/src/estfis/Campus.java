@@ -1,4 +1,6 @@
 package estfis;
+import java.awt.HeadlessException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -26,14 +28,14 @@ public class Campus extends Estrutura {
 		return this.prd;
 	}
 	
-	protected void caNew() throws CampoEmBrancoException, DisciplinaNaoInformadaException, ProfessorNaoAtribuidoException, TipoDeAulaNaoAtribuidoException, OpcaoInvalidaException {
+	protected void caNew() throws CampoEmBrancoException, DisciplinaNaoInformadaException, ProfessorNaoAtribuidoException, TipoDeAulaNaoAtribuidoException, OpcaoInvalidaException, IOException {
 		ArrayList<String> pal = new ArrayList<>();
 		pal.add("Nome");
 		pal.add("Andares");
 		prd.add((Predio) Menus.caNew(2, pal, "P"));
 	}
 
-	protected void opt() throws DisciplinaNaoInformadaException, ProfessorNaoAtribuidoException, CampoEmBrancoException, TipoDeAulaNaoAtribuidoException {
+	protected void opt() throws DisciplinaNaoInformadaException, ProfessorNaoAtribuidoException, CampoEmBrancoException, TipoDeAulaNaoAtribuidoException, IOException, NumberFormatException {
 		while (true) {
 			try {
 				System.out.println("--------------- Opções ---------------");
@@ -55,7 +57,12 @@ public class Campus extends Estrutura {
 							pal.add("Nome professor");
 							pal.add("Código da turma");
 							pal.add(this.indice);
-							turmas.add((Turma) Menus.caNew(3, pal, "T"));
+							try {
+								turmas.add((Turma) Menus.caNew(3, pal, "T"));
+							} catch (Exception e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 						} else if(res2.equals("-")) {
 							Menus.del(turmas, "turma");
 						} else {
@@ -74,7 +81,7 @@ public class Campus extends Estrutura {
 		}
 	}
 
-	protected void det() {
+	protected void det() throws IOException, HeadlessException {
 		while (true) {
 			System.out.println("--------------- Detalhes ---------------");
 			System.out.println("Nome: " + this.nome);
@@ -89,35 +96,45 @@ public class Campus extends Estrutura {
 				String nome;
 				while (true) {
 					try {
-						nome = JOptionPane.showInputDialog("Nome:");
-						if (nome == null) {
-							break;
-						} else if (nome.trim().length() == 0) {
-							throw new CampoEmBrancoException("o nome do campus");
-						} else {
-							changename(nome);
-							break;
+						try {
+							nome = JOptionPane.showInputDialog("Nome:");
+							if (nome == null) {
+								break;
+							} else if (nome.trim().length() == 0) {
+								throw new CampoEmBrancoException("o nome do campus");
+							} else {
+								changename(nome);
+								break;
+							}
+						} catch (CampoEmBrancoException e) {
+							e.msg();
+							continue;
 						}
-					} catch (CampoEmBrancoException e) {
-						e.msg();
-						continue;
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
 				}
 			} else if (res.equals("2")) {
 				String cidade;
 				while (true) {
 					try {
-						cidade = JOptionPane.showInputDialog("UF:");
-						if (cidade == null) {
-							break;
-						} else if (cidade.trim().length() == 0) {
-							throw new CampoEmBrancoException("a cidade do campus");
-						} else {
-							changeCity(cidade);
-							break;
+						try {
+							cidade = JOptionPane.showInputDialog("UF:");
+							if (cidade == null) {
+								break;
+							} else if (cidade.trim().length() == 0) {
+								throw new CampoEmBrancoException("a cidade do campus");
+							} else {
+								changeCity(cidade);
+								break;
+							}
+						} catch (CampoEmBrancoException e) {
+							e.msg();
 						}
-					} catch (CampoEmBrancoException e) {
-						e.msg();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
 				}
 			}
@@ -129,8 +146,8 @@ public class Campus extends Estrutura {
 	}
 
 	@Override
-	public void home2() {
+	public int home(String cat, int qtaulas) throws CampoEmBrancoException {
 		// TODO Auto-generated method stub
-		
+		return 0;
 	}
 }

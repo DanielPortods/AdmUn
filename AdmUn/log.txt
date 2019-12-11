@@ -1,0 +1,12 @@
+excecoes.CampoEmBrancoException
+excecoes.CampoEmBrancoException
+excecoes.OpcaoInvalidaException
+excecoes.CampoEmBrancoException
+excecoes.OpcaoInvalidaException
+excecoes.CampoEmBrancoException
+excecoes.OpcaoInvalidaException
+excecoes.CampoEmBrancoException
+excecoes.OpcaoInvalidaException
+excecoes.OpcaoInvalidaException
+excecoes.DisciplinaNaoInformadaException
+excecoes.OpcaoInvalidaException

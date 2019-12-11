@@ -1,17 +1,29 @@
 package principal;
-//import gui.Home;
+import gui.Arq;
 import gui.Menus;
 import estfis.Instituicao;
 import excecoes.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import java.io.File;
+import java.io.IOException;
 
 public class Main {
-	//private static Home h;
 	private static ArrayList<Instituicao> inst = new ArrayList<>();
-	
-	public static void main(String[] args) throws OpcaoInvalidaException, NumberFormatException, CampoEmBrancoException, DisciplinaNaoInformadaException, ProfessorNaoAtribuidoException, TipoDeAulaNaoAtribuidoException{
 
+	public static void main(String[] args) throws OpcaoInvalidaException, NumberFormatException, CampoEmBrancoException, DisciplinaNaoInformadaException, ProfessorNaoAtribuidoException, TipoDeAulaNaoAtribuidoException, IOException{
+		File log = new File("log.txt");
+		try{
+		    if( log.exists() ){
+		    	log.delete();
+		    	log.createNewFile();
+		    }else {
+		    	log.createNewFile();
+		    }
+		}catch(IOException ex){
+		    ex.printStackTrace();
+		}
+		
 		while (true) {
 			try {
 				Menus.enter();
@@ -36,9 +48,11 @@ public class Main {
 								inst.get(id - 1).home(inst.get(id-1).getEst());
 							}
 						}catch (NumberFormatException e) {
+							Arq.escreva(e.fillInStackTrace().toString() + "\n");
 							JOptionPane.showMessageDialog(null, "Informe a posição na lista de instituições ");
 							continue;
 						}catch (IndexOutOfBoundsException e) {
+							Arq.escreva(e.fillInStackTrace().toString() + "\n");
 							JOptionPane.showMessageDialog(null, "Instituição inexistente!");
 							continue;
 						}

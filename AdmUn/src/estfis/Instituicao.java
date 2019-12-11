@@ -1,6 +1,8 @@
 package estfis;
 import usr.*;
 import abs.Disciplina;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import usr.Professor;
@@ -22,7 +24,7 @@ public class Instituicao extends Estrutura {
 		this.formest = "Campus";
 	}
 
-	protected void det() {
+	protected void det() throws IOException {
 		while (true) {
 			System.out.println("--------------- Detalhes ---------------");
 			System.out.println("Nome: " + this.nome);
@@ -78,7 +80,7 @@ public class Instituicao extends Estrutura {
 		return this.cp;
 	}
 
-	protected void caNew() throws CampoEmBrancoException, DisciplinaNaoInformadaException, ProfessorNaoAtribuidoException, TipoDeAulaNaoAtribuidoException, OpcaoInvalidaException {
+	protected void caNew() throws CampoEmBrancoException, DisciplinaNaoInformadaException, ProfessorNaoAtribuidoException, TipoDeAulaNaoAtribuidoException, OpcaoInvalidaException, IOException {
 		ArrayList<String> pal = new ArrayList<>();
 		pal.add("Nome");
 		pal.add("Cidade");
@@ -86,7 +88,7 @@ public class Instituicao extends Estrutura {
 		cp.add((Campus) Menus.caNew(2, pal, "C"));
 	}
 
-	protected void opt() throws DisciplinaNaoInformadaException, ProfessorNaoAtribuidoException, CampoEmBrancoException, TipoDeAulaNaoAtribuidoException {
+	protected void opt() throws DisciplinaNaoInformadaException, ProfessorNaoAtribuidoException, CampoEmBrancoException, TipoDeAulaNaoAtribuidoException, IOException {
 
 		while (true) {
 			try {
@@ -186,5 +188,11 @@ public class Instituicao extends Estrutura {
 			}
 		}
 	return -1;
+	}
+
+	@Override
+	public int home(String cat, int qtaulas) throws CampoEmBrancoException {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

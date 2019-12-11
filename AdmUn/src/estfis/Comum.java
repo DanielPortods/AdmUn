@@ -47,7 +47,8 @@ public class Comum extends Sala {
 				System.out.println("Capacidade: " + this.capacidade);
 				System.out.println("Catergoria: " + this.categoria);
 				System.out.println("Ar condicionado: " + this.qtar + "  Lousa: " + this.numlousa + "\nProjetores: " + this.numproj + " Tablado: " + ((this.tablado==true) ? "Sim":"Não"));
-				System.out.println("\nTAXA DE OCUPAÇÃO: " + this.oc.getTaxaOcupacao());
+				System.out.printf("\nTAXA DE OCUPAÇÃO: %.2f%%\n", this.oc.getTaxaOcupacao()*100);
 				tab();
 	}
+	
 }

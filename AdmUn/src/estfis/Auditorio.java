@@ -7,7 +7,6 @@ import excecoes.DisciplinaNaoInformadaException;
 import excecoes.OpcaoInvalidaException;
 import excecoes.ProfessorNaoAtribuidoException;
 import excecoes.TipoDeAulaNaoAtribuidoException;
-import gui.Menus;
 
 public class Auditorio extends Sala {
 	

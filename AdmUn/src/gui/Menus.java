@@ -1,4 +1,5 @@
 package gui;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
@@ -108,7 +109,7 @@ public class Menus {
 	}
 	
 	public static Object caNew(int qt, ArrayList<String> pal, String T) throws DisciplinaNaoInformadaException, ProfessorNaoAtribuidoException, CampoEmBrancoException, 
-																	           TipoDeAulaNaoAtribuidoException, OpcaoInvalidaException {
+																	           TipoDeAulaNaoAtribuidoException, OpcaoInvalidaException, IOException {
 		String[] dados = new String[qt];
 		Professor pro = null;
 		Disciplina dic= null;
@@ -130,14 +131,12 @@ public class Menus {
 						} else if (i == 1) {
 							throw new CampoEmBrancoException("a quantidade de " + pal.get(i));
 						}
-					} else if (T.equals("S")) {
+					} else if (T.equals("SA") || T.equals("SL") || T.equals("SC")) {
 						if (i == 0) {
 							throw new CampoEmBrancoException("o " + pal.get(i));							
 						} else if (i == 1) {
-							throw new CampoEmBrancoException("qual o andar da sala");
-						} else if (i == 2) {
-							throw new CampoEmBrancoException("a " + pal.get(i));			
-						} else if (i == 3) {
+							throw new CampoEmBrancoException("a " + pal.get(i));
+						}  else if (i == 2) {
 							throw new TipoDeAulaNaoAtribuidoException();
 						}
 

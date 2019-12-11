@@ -1,4 +1,5 @@
 package abs;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -6,7 +7,8 @@ import javax.swing.JOptionPane;
 import estfis.Predio;
 import usr.*;
 import estfis.Sala;
-import excecoes.OpcaoInvalidaException;
+import excecoes.*;
+import gui.Arq;
 import gui.Menus;
 
 
@@ -16,14 +18,16 @@ public class Turma {
 	Professor prof;
 	Sala sal;
 	ArrayList<Predio> p = new ArrayList<>();
+	int qtaulas;
 	
 	public Turma(Disciplina ds, Professor pr, String co) {
 		this.codigo=co;
 		this.prof=pr;
 		this.ds=ds;
+		setqtaulas();
 	}
 	
-	public void home(ArrayList<Predio> p) throws OpcaoInvalidaException {
+	public void home(ArrayList<Predio> p) throws OpcaoInvalidaException, CampoEmBrancoException, IOException {
 		this.p=p;
 		while (true) {
 			try {
@@ -37,6 +41,11 @@ public class Turma {
 				if (res.equals("<")) {
 					break;
 				} else if (res.equals("+")) {
+					if(qtaulas==0) {
+						JOptionPane.showMessageDialog(null, "Todas as aulas dessa turma já foram alocadas.");
+						continue;
+					}
+					
 					alocar(this.p);
 				} else {
 					throw new OpcaoInvalidaException(0, 1);
@@ -48,7 +57,7 @@ public class Turma {
 		}
 	}
 	
-	private void alocar(ArrayList<Predio> p) throws OpcaoInvalidaException {
+	private void alocar(ArrayList<Predio> p) throws OpcaoInvalidaException, CampoEmBrancoException, IOException {
 		while(true) {
 			try {
 			Menus.menuf(p);
@@ -66,26 +75,27 @@ public class Turma {
 							if(res2.equals("<")) {
 								break;
 							}else {
-									int id2 = Integer.parseInt(res);
-									p.get(id-1).getEst().get(id2-1).home2();
+								
+								int id2 = Integer.parseInt(res);
+								qtaulas = p.get(id-1).getEst().get(id2-1).home(ds.getCat(), this.qtaulas);
 							}
 						}catch(NumberFormatException e) {
-							//log aqui!!
+							Arq.escreva(e.fillInStackTrace().toString() + "\n");
 							JOptionPane.showMessageDialog(null, "Informe a posição na lista de Prédios");
 							continue;
 						}catch(IndexOutOfBoundsException e) {
-							//log aqui!!
+							Arq.escreva(e.fillInStackTrace().toString() + "\n");
 							JOptionPane.showMessageDialog(null, "Prédio Inexistente ");
 							continue;
 						}
 					}				
 			}
 			}catch(NumberFormatException e) {
-				//log aqui!!
+				Arq.escreva(e.fillInStackTrace().toString() + "\n");
 				JOptionPane.showMessageDialog(null, "Informe a posição na lista de Prédios");
 				continue;
 			}catch(IndexOutOfBoundsException e) {
-				//log aqui!!
+				Arq.escreva(e.fillInStackTrace().toString() + "\n");
 				JOptionPane.showMessageDialog(null, "Prédio Inexistente ");
 				continue;
 			}
@@ -93,6 +103,10 @@ public class Turma {
 		
 	}
 	
+	private void setqtaulas(){
+		this.qtaulas = this.ds.getCredito()/2;
+	}
+		
 	private String gethr() {
 		return null;
 	}

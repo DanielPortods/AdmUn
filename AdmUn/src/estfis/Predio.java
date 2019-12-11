@@ -1,16 +1,17 @@
 package estfis;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+import abs.Ocupacao;
 import excecoes.*;
 import gui.Menus;
 
 public class Predio extends Estrutura{
 	private int andares;
 	ArrayList<Sala> sal = new ArrayList<>();
-	
-	private int taxaOcupacao;
+	private Ocupacao oc = new Ocupacao();
 	
 	public Predio(String nome, int and) {
 		this.nome=nome;
@@ -18,23 +19,11 @@ public class Predio extends Estrutura{
 		this.formest="Salas";
 	}
 	
-	public void setTaxaOcupacao() {
-		int qtdSalas = sal.size();
-		int i = 0;
-		
-		int somaPeriodosOcupados = 0;
-		int somaPeriodosLivres = 0;
-		
-		for(i = 0; i < qtdSalas; i++) {
-			somaPeriodosOcupados += sal.get(i).oc.getQtdOcupados();
-			somaPeriodosLivres += sal.get(i).oc.getQtdLivres();
-		}
-		
-		this.taxaOcupacao = somaPeriodosOcupados / somaPeriodosLivres;
-	}
 	
-	public int getTaxaOcupacao() {
-		return this.taxaOcupacao;
+	public void setTaxaOcupacao() {
+		for(int s=0; s<sal.size();s++) {
+			oc.setGradeHoraria(this.sal.get(s));
+		}
 	}
 	
 	@Override
@@ -42,7 +31,7 @@ public class Predio extends Estrutura{
 		return this.sal;
 	}
 
-	protected void caNew() throws CampoEmBrancoException, DisciplinaNaoInformadaException, ProfessorNaoAtribuidoException, TipoDeAulaNaoAtribuidoException, OpcaoInvalidaException {
+	protected void caNew() throws CampoEmBrancoException, DisciplinaNaoInformadaException, ProfessorNaoAtribuidoException, TipoDeAulaNaoAtribuidoException, OpcaoInvalidaException, IOException {
 		String dado1=null, dado2=null, T=null;
 		boolean sent = true;
 
@@ -105,20 +94,36 @@ public class Predio extends Estrutura{
 	}		
 
 	@Override
-	protected void opt() {
-		// TODO Auto-generated method stub
-		
+	protected void opt() throws IOException {
+		det();	
 	}
 
 	@Override
-	protected void det() {
-		// TODO Auto-generated method stub
-		
+	protected void det() throws IOException {
+		while(true) {
+			try {
+				System.out.println("--------------- " + this.nome + " ---------------");
+				System.out.println();
+				System.out.println("Andares: " + this.andares);
+				System.out.println("Quantidade de salas: " + this.sal.size());
+				setTaxaOcupacao();
+				System.out.printf("\nTAXA DE OCUPAÇÃO: %.2f%%\n", this.oc.getTaxaOcupacao()*100);
+				System.out.println("\n[<] Voltar");
+				String res = Menus.entrada();
+				if(res.equals("<")) {
+					break;
+				}else {
+					throw new OpcaoInvalidaException(0,1); 
+				}
+			}catch(OpcaoInvalidaException e){
+				e.msg();
+			}
+		}
 	}
 
 	@Override
-	public void home2() {
+	public int home(String cat, int qtaulas) throws CampoEmBrancoException {
 		// TODO Auto-generated method stub
-		
+		return 0;
 	}
 }

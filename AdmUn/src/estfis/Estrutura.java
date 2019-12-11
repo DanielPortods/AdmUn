@@ -1,6 +1,8 @@
 package estfis;
 import gui.Menus;
 import usr.Aluno;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import excecoes.*;
@@ -11,12 +13,12 @@ public abstract class Estrutura {
 	protected int qtEst;
 	
 	public abstract ArrayList<? extends Estrutura> getEst();
-	protected abstract void caNew() throws CampoEmBrancoException, DisciplinaNaoInformadaException, ProfessorNaoAtribuidoException, TipoDeAulaNaoAtribuidoException, OpcaoInvalidaException;
-	protected abstract void opt() throws DisciplinaNaoInformadaException, ProfessorNaoAtribuidoException, CampoEmBrancoException, TipoDeAulaNaoAtribuidoException;
-	protected abstract void det();
-	public abstract void home2(); 
+	protected abstract void caNew() throws CampoEmBrancoException, DisciplinaNaoInformadaException, ProfessorNaoAtribuidoException, TipoDeAulaNaoAtribuidoException, OpcaoInvalidaException, IOException;
+	protected abstract void opt() throws DisciplinaNaoInformadaException, ProfessorNaoAtribuidoException, CampoEmBrancoException, TipoDeAulaNaoAtribuidoException, IOException;
+	protected abstract void det() throws IOException;
+	public abstract int home(String cat, int qtaulas) throws CampoEmBrancoException, IOException; 
 	
-	public void home (ArrayList<? extends Estrutura> cp) throws CampoEmBrancoException, OpcaoInvalidaException, DisciplinaNaoInformadaException, ProfessorNaoAtribuidoException, TipoDeAulaNaoAtribuidoException {
+	public void home (ArrayList<? extends Estrutura> cp) throws CampoEmBrancoException, OpcaoInvalidaException, DisciplinaNaoInformadaException, ProfessorNaoAtribuidoException, TipoDeAulaNaoAtribuidoException, IOException {
 		while (true) {
 			try {
 				Menus.menu(this.formest, cp, getnome());
