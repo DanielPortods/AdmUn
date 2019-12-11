@@ -1,4 +1,5 @@
 package estfis;
+import gui.Arq;
 import gui.Menus;
 import usr.Aluno;
 
@@ -58,9 +59,11 @@ public abstract class Estrutura {
 					}
 				}
 			} catch (NumberFormatException e) {
+				Arq.escreva(e.fillInStackTrace().toString() + "\n");
 				JOptionPane.showMessageDialog(null, "Informe a posição na lista de " + this.formest);
 				continue;
 			}catch (IndexOutOfBoundsException e) {
+				Arq.escreva(e.fillInStackTrace().toString() + "\n");
 				JOptionPane.showMessageDialog(null, this.formest + " inexistente!");
 				continue;
 			}

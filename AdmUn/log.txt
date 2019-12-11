@@ -1,12 +1,2 @@
-excecoes.CampoEmBrancoException
-excecoes.CampoEmBrancoException
-excecoes.OpcaoInvalidaException
-excecoes.CampoEmBrancoException
-excecoes.OpcaoInvalidaException
-excecoes.CampoEmBrancoException
-excecoes.OpcaoInvalidaException
-excecoes.CampoEmBrancoException
-excecoes.OpcaoInvalidaException
-excecoes.OpcaoInvalidaException
-excecoes.DisciplinaNaoInformadaException
-excecoes.OpcaoInvalidaException
+java.lang.NumberFormatException: For input string: "s"
+java.lang.NumberFormatException: For input string: "s"

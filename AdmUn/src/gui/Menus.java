@@ -109,13 +109,16 @@ public class Menus {
 	}
 	
 	public static Object caNew(int qt, ArrayList<String> pal, String T) throws DisciplinaNaoInformadaException, ProfessorNaoAtribuidoException, CampoEmBrancoException, 
-																	           TipoDeAulaNaoAtribuidoException, OpcaoInvalidaException, IOException {
+																	           TipoDeAulaNaoAtribuidoException, OpcaoInvalidaException, IOException, NumberFormatException {
 		String[] dados = new String[qt];
 		Professor pro = null;
 		Disciplina dic= null;
 		for (int i = 0; i < qt; i++) {
 			try {
 				dados[i] = JOptionPane.showInputDialog(pal.get(i) + ":");
+				if(T.equals("SC") && i==1) {
+					int aux = Integer.parseInt(dados[1]);
+				}
 				if (dados[i] == null) {
 					break;
 				} else if (dados[i].trim().length() == 0) {
@@ -257,6 +260,7 @@ public class Menus {
 				i--;
 				continue;
 			}catch (NumberFormatException e) {
+				Arq.escreva(e.fillInStackTrace().toString() + "\n");
 				JOptionPane.showMessageDialog(null, "Formato inválido!");
 				i--;
 				continue;

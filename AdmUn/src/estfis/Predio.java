@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 
 import abs.Ocupacao;
 import excecoes.*;
+import gui.Arq;
 import gui.Menus;
 
 public class Predio extends Estrutura{
@@ -74,6 +75,10 @@ public class Predio extends Estrutura{
 				continue;
 			} catch (CampoEmBrancoException e) {
 				e.msg();
+				continue;
+			} catch (NumberFormatException e) {
+				Arq.escreva(e.fillInStackTrace().toString() + "\n");
+				JOptionPane.showMessageDialog(null, "Informe o andar da sala");
 				continue;
 			}	
 		}
